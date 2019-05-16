@@ -1,0 +1,4 @@
+10
+3.1415
+Texto
+Exemplo de frase

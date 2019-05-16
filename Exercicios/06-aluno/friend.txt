@@ -1,0 +1,94 @@
+---------------------------------------------------------------------------------------------
+   ATIVIDADE
+---------------------------------------------------------------------------------------------
+
+1) Q-O que é uma classe Friend? Para que servem?
+   R- Uma classe declarada como "friend" permite acesso aos seus membros privados e protegidos.
+
+   Q-Exemplo de código:
+   R- 
+        class B {
+            friend class A; // A eh amigo de B
+            private:
+                int i;
+            };
+        
+        class A {
+        public: 
+            A(B b) {        // o objeto deve ser passado como parametro para a funcao
+                b.i = 0;    // acesso legal devido a "amizade"
+            }
+        };
+        
+2) Criar uma aplicação em C++. Criar uma classe Aluno com os seguintes atributos:
+    - nome
+    - matricula
+    - idade
+    - lista de disciplinas
+   No programa main, instanciar um Aluno e inicializar os dados.
+   
+   R- codigo:
+   
+    /***** Aluno.h *****/
+    
+        #ifndef _ALUNO_H_
+        #define _ALUNO_H_
+
+        #include <iostream>
+        #include <string>
+
+        using namespace std;
+
+        class Aluno {
+            
+            public:
+                //construtor/destrutor
+                Aluno(string nome="", string matricula="", int idade=0, int tamanho=10)
+                { 
+                    _nome = nome;
+                    _matricula = matricula;
+                    _idade = idade;
+                    _disciplinas = new string[tamanho];
+                };
+                ~Aluno() { };
+                
+                //getters
+                string getNome() { return _nome; }
+                string getMatricula() { return _matricula; }
+                int getIdade() { return _idade; }
+                
+                //setters
+                void setNome(string nome="") { _nome = nome; }
+                void setMatricula(string matricula="") { _matricula = matricula; }
+                void setIdade(int idade=0) { _idade = idade; }
+                
+                //cout override
+                friend ostream& operator<<(ostream& out, Aluno& aluno)
+                {
+                    out << aluno.getNome();
+                    return out;
+                }
+
+            private:
+                //atributos
+                string _nome;
+                string _matricula;
+                int _idade;
+                string *_disciplinas;
+        };
+
+        #endif    
+        
+    /***** main.cpp *****/
+    
+        #include "Aluno.h"
+
+        int main () {
+            
+            Aluno aluno("Eu", "eu012345", 51);
+            
+            //cout sobrescrito
+            cout << "aluno.nome = " << aluno << endl;
+            
+            return 0;
+        }

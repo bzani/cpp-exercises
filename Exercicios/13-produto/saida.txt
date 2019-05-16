@@ -1,0 +1,5 @@
+1 carro 20000 3
+2 bicicleta 150 10
+3 jogo 1.99 14
+4 coxinha 3 9
+5 biscoito 1.89 5

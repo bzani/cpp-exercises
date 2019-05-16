@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+class MinhaClasse {
+	public:
+	    MinhaClasse (int x): _x(x) {}
+	    int operator()(int y) {
+	        return _x + y;
+	    }
+	
+	private:
+	    int _x;
+};
+
+int main() {
+ 
+    MinhaClasse m(5);
+    cout << m(6);
+
+};
